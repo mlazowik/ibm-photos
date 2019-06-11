@@ -2,3 +2,5 @@ envs
 Django
 pip-tools
 psycopg2-binary
+CommonsDownloader
+django-cors-headers

@@ -11,3 +11,6 @@ https://github.com/phthom/ContainerOrchestration/blob/master/2-DockerLab.md
 https://github.com/ilanschnell/bitarray
 https://github.com/RoaringBitmap/CRoaring
 https://github.com/Ezibenroc/PyRoaringBitMap
+
+https://github.com/bvaughn/react-virtualized/issues/958
+https://github.com/neptunian/react-photo-gallery
