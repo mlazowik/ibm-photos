@@ -1,0 +1,4 @@
+envs
+Django
+pip-tools
+psycopg2-binary
