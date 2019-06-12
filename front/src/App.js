@@ -70,6 +70,7 @@ function App() {
         <InfiniteScroll
           pageStart={0}
           initialLoad={initialLoad}
+          threshold={2000}
           hasMore={photos.hasMore}
           loadMore={loadMorePhotos}
         >
