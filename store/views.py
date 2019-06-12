@@ -10,7 +10,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ('src', 'width', 'height', 'processing', 'processed')
+        fields = ('src', 'width', 'height', 'processed')
 
     def get_src(self, photo):
         request = self.context.get('request')

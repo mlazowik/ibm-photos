@@ -4,7 +4,6 @@ from django.db import models
 class Photo(models.Model):
     image = models.ImageField()
     uploaded_at = models.DateTimeField('date uploaded', auto_now_add=True)
-    processing = models.BooleanField(default=False)
     processed = models.BooleanField(default=False)
 
 

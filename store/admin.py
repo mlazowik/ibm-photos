@@ -4,7 +4,7 @@ from .models import Photo, Object
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('image', 'processed', 'processing')
+    list_display = ('image', 'processed')
 
 
 admin.site.register(Photo, PhotoAdmin)
