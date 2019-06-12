@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     async function fetchPhotos() {
-      const result = await axios(`${config.API_ROOT}media/photos.json`);
+      const result = await axios(`${config.API_ROOT}api/photos`);
       setAllPhotos(result.data);
       setPhotos({
         list: result.data.slice(0, BATCH),
