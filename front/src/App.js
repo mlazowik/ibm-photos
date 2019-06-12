@@ -1,5 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import Gallery from "react-photo-gallery";
+import InfiniteScroll from "react-infinite-scroller";
+
 import "carbon-components/css/carbon-components.min.css";
 import {
   Content,
@@ -8,15 +12,11 @@ import {
   HeaderGlobalBar,
   HeaderName
 } from "carbon-components-react";
-
 import Search20 from "@carbon/icons-react/es/search/20";
 import Notification20 from "@carbon/icons-react/es/notification/20";
 import AppSwitcher20 from "@carbon/icons-react/es/app-switcher/20";
 
-import Gallery from "react-photo-gallery";
-import InfiniteScroll from "react-infinite-scroller";
-
-const noop = () => {};
+import { noop } from "./noop";
 
 function App() {
   const BATCH = 50;
