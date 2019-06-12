@@ -44,6 +44,9 @@ while left:
         if not image_info["mime"].startswith("image"):
             continue
 
+        if image_info["mime"] == "image/gif":
+            continue
+
         gallery.append({
             "src": image_info["thumburl"],
             "width": image_info["thumbwidth"],
