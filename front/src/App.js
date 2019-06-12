@@ -17,6 +17,7 @@ import Notification20 from "@carbon/icons-react/es/notification/20";
 import AppSwitcher20 from "@carbon/icons-react/es/app-switcher/20";
 
 import { noop } from "./noop";
+import { config } from "./config";
 
 function App() {
   const BATCH = 50;
@@ -27,7 +28,7 @@ function App() {
 
   useEffect(() => {
     async function fetchPhotos() {
-      const result = await axios("//127.0.0.1:8000/media/photos.json");
+      const result = await axios(`${config.API_ROOT}media/photos.json`);
       setAllPhotos(result.data);
       setPhotos({
         list: result.data.slice(0, BATCH),
