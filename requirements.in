@@ -6,3 +6,4 @@ CommonsDownloader
 django-cors-headers
 Pillow
 djangorestframework
+celery[redis]<5

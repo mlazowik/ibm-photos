@@ -143,3 +143,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# Celery
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TASK_RESULT_EXPIRES = 5 * 60 * 60
+
+PROCESS_PHOTOS_INTERVAL = 30
