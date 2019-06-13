@@ -5,3 +5,8 @@
 .loading {
   opacity: 0.8;
 }
+
+.error {
+  margin-bottom: 1em;
+  color: red;
+}

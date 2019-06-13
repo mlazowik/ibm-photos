@@ -31,6 +31,7 @@ function App() {
   const [initialLoad, setInitialLoad] = useState(true);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const debouncedQuery = useDebounce(query, 200);
 
@@ -38,14 +39,23 @@ function App() {
     async function fetchPhotos() {
       const escaped = encodeURIComponent(debouncedQuery);
 
-      const result = await axios(
-        `${config.API_ROOT}api/photos/?query=${escaped}`
-      );
-      setAllPhotos(result.data);
-      setPhotos({
-        list: result.data.slice(0, BATCH),
-        hasMore: BATCH < result.data.length
-      });
+      try {
+        const result = await axios(
+          `${config.API_ROOT}api/photos/?query=${escaped}`
+        );
+        setError("");
+        setAllPhotos(result.data);
+        setPhotos({
+          list: result.data.slice(0, BATCH),
+          hasMore: BATCH < result.data.length
+        });
+      } catch (error) {
+        if (error.response.status === 400) {
+          setError(error.response.data[0]);
+        } else {
+          setError(error);
+        }
+      }
       setLoading(false);
     }
 
@@ -100,6 +110,7 @@ function App() {
           value={query}
           onChange={onSerach}
         />
+        <div className={styles.error}>{error}</div>
         <InfiniteScroll
           pageStart={0}
           initialLoad={initialLoad}

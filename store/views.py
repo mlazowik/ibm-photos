@@ -1,7 +1,9 @@
 from collections import defaultdict
 
+import pyparsing
 from booleano.utils import eval_boolean
 from rest_framework import viewsets, serializers, generics
+from rest_framework.exceptions import ValidationError
 
 from store.models import Photo, Object
 
@@ -130,9 +132,11 @@ class PhotoListView(generics.ListAPIView):
 
         query = self.request.query_params.get('query', None)
         if query is not None and query != "":
-            print(query)
             ids = Photo.objects.values_list('pk', flat=True)
-            matching_ids = filter(lambda i: filter_id_by_query(i, query), ids)
-            queryset = queryset.filter(id__in=matching_ids)
+            try:
+                matching_ids = filter(lambda i: filter_id_by_query(i, query), ids)
+                queryset = queryset.filter(id__in=matching_ids)
+            except Exception as e:
+                raise ValidationError(e)
 
         return queryset
