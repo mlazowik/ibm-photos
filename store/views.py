@@ -24,5 +24,5 @@ class PhotoSerializer(serializers.ModelSerializer):
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
-    queryset = Photo.objects.all()
+    queryset = Photo.objects.order_by("-uploaded_at")
     serializer_class = PhotoSerializer
