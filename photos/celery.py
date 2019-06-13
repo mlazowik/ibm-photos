@@ -28,7 +28,7 @@ app.conf.beat_schedule = {
 # This means that the whole job can be effectively split across multiple
 # executions.
 app.conf.task_annotations = {
-    'backend.tasks.task_push_dirty_flag_to_samples': {
+    'store.tasks.task_process_photos': {
         'soft_time_limit': settings.PROCESS_PHOTOS_INTERVAL - 2,
         'time_limit': settings.PROCESS_PHOTOS_INTERVAL - 1
     },
