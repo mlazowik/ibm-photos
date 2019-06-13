@@ -8,7 +8,7 @@ class Photo(models.Model):
 
 
 class Object(models.Model):
-    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
+    photo = models.ForeignKey(Photo, on_delete=models.CASCADE, related_name="detections")
     label = models.CharField(max_length=255)
     probability = models.FloatField()
     y_min = models.FloatField()

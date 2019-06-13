@@ -7,6 +7,7 @@
 amqp==2.5.0               # via kombu
 argparse==1.4.0           # via commonsdownloader
 billiard==3.6.0.0         # via celery
+booleano==1.1a2
 celery[redis]==4.3.0
 certifi==2019.3.9         # via requests
 chardet==3.0.4            # via requests
@@ -26,11 +27,12 @@ oauthlib==3.0.1           # via requests-oauthlib
 pillow==6.0.0
 pip-tools==3.8.0
 psycopg2-binary==2.8.2
+pyparsing==2.4.0          # via booleano
 pytz==2019.1              # via celery, django
 redis==3.2.1              # via celery
 requests-oauthlib==1.2.0  # via mwclient
 requests==2.22.0          # via grequests, requests-oauthlib
-six==1.12.0               # via commonsdownloader, mwclient, pip-tools
+six==1.12.0               # via booleano, commonsdownloader, mwclient, pip-tools
 sqlparse==0.3.0           # via django
 urllib3==1.25.3           # via requests
 vine==1.3.0               # via amqp, celery

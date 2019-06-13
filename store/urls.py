@@ -1,6 +1,7 @@
-from rest_framework import routers
+from django.urls import path
 
-from store.views import PhotoViewSet
+from store.views import PhotoListView
 
-store_router = routers.DefaultRouter()
-store_router.register(r'photos', PhotoViewSet)
+store_urls = [
+    path('photos/', PhotoListView.as_view())
+]
