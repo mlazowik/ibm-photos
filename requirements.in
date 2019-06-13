@@ -7,3 +7,4 @@ django-cors-headers
 Pillow
 djangorestframework
 celery[redis]<5
+grequests

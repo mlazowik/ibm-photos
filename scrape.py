@@ -7,7 +7,10 @@
     MIT License
 """
 import json
+import mimetypes
+import shutil
 import sys
+import uuid
 
 import requests
 
@@ -27,8 +30,6 @@ PARAMS = {
     "format": "json"
 }
 
-gallery = []
-
 left = True
 page = 1
 while left:
@@ -47,16 +48,19 @@ while left:
         if image_info["mime"] == "image/gif":
             continue
 
-        gallery.append({
-            "src": image_info["thumburl"],
-            "width": image_info["thumbwidth"],
-            "height": image_info["thumbheight"]
-        })
+        src = image_info["thumburl"]
+        extension = mimetypes.guess_extension(image_info["mime"])
+        filename = uuid.uuid4().hex + extension
+        p = S.get(src, stream=True, timeout=5)
+        if p.status_code == 200:
+            with open("/Users/michal/scraped/" + filename, "wb") as f:
+                p.raw.decode_content = True
+                shutil.copyfileobj(p.raw, f)
 
-    if "continue" in data:
-        PARAMS["continue"] = data["continue"]["continue"]
-        PARAMS["gcmcontinue"] = data["continue"]["gcmcontinue"]
-    else:
-        left = False
+    left = False
 
-print(json.dumps(gallery))
+    # if "continue" in data:
+    #     PARAMS["continue"] = data["continue"]["continue"]
+    #     PARAMS["gcmcontinue"] = data["continue"]["gcmcontinue"]
+    # else:
+    #     left = False
