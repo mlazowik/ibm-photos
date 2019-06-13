@@ -32,7 +32,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const debouncedQuery = useDebounce(query, 250);
+  const debouncedQuery = useDebounce(query, 200);
 
   useEffect(() => {
     async function fetchPhotos() {
@@ -60,6 +60,11 @@ function App() {
       hasMore: newSize < allPhotos.length
     });
     setInitialLoad(false);
+  }
+
+  function onSerach(event) {
+    setLoading(true);
+    setQuery(event.target.value);
   }
 
   return (
@@ -93,7 +98,7 @@ function App() {
           placeHolderText="Search"
           id="search-1"
           value={query}
-          onChange={event => setQuery(event.target.value)}
+          onChange={onSerach}
         />
         <InfiniteScroll
           pageStart={0}
