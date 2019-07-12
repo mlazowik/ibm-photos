@@ -79,3 +79,5 @@ Possible improvements
 * Create [ingress](https://cloud.ibm.com/docs/containers?topic=containers-ingress)
   for SSL & domain support. Would do it now, but can't due
   to lite.
+* CDN for photos.
+* Display objects for each image in the gallery.
