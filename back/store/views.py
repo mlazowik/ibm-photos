@@ -15,8 +15,7 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = ('src', 'width', 'height', 'processed')
 
     def get_src(self, photo):
-        request = self.context.get('request')
-        return request.build_absolute_uri(photo.image.url)
+        return photo.image.url
 
     def get_width(self, photo):
         return photo.image.width

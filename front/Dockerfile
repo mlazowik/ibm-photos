@@ -19,9 +19,12 @@ ENV FRONT_ROOT /opt/front
 RUN mkdir -p $FRONT_ROOT
 WORKDIR $FRONT_ROOT
 
-COPY front .
+COPY front/js/package.json front/js/yarn.lock ./
 
 RUN yarn install
+
+COPY front/js ./
+
 RUN yarn build
 
 FROM nginx:alpine
@@ -31,7 +34,7 @@ RUN mkdir -p $NGINX_ROOT
 WORKDIR $NGINX_ROOT
 
 RUN mkdir static
-COPY --from=front /opt/front/build .
+COPY --from=front /opt/front/build ./
 COPY --from=back /opt/back/static static/
 
 COPY front/nginx.conf /etc/nginx/conf.d/photos.template

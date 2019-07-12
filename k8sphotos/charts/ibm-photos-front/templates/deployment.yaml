@@ -41,6 +41,13 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: "{{ include "ibm-photos-back.fullname" . }}-{{ .Values.dataVolume.name }}"
+              mountPath: /opt/nginx/media
+      volumes:
+        - name: "{{ include "ibm-photos-back.fullname" . }}-{{ .Values.dataVolume.name }}"
+          persistentVolumeClaim:
+            claimName: {{ .Values.dataVolume.existingClaimName }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

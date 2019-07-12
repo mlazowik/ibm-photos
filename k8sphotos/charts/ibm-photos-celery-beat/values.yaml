@@ -1,22 +1,25 @@
-# Default values for ibm-photos-front.
+# Default values for ibm-photos-celery-beat.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: de.icr.io/photos-test/ibm-photos-front
+  repository: de.icr.io/photos-test/ibm-photos-back
   tag: v0.1
+  command:
+    - "celery"
+    - "-A"
+    - "photos"
+    - "beat"
+    - "-l"
+    - "info"
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
   - name: "photos-test-de-icr-io"
 nameOverride: ""
 fullnameOverride: ""
-
-service:
-  type: NodePort
-  port: 80
 
 ingress:
   enabled: false
@@ -50,9 +53,12 @@ tolerations: []
 
 affinity: {}
 
-back:
-  url: "http://photos-ibm-photos-back.photos-test:8000"
+database:
+  user: "photos"
+  password: "photos"
+  host: "photos-ibm-postgres-dev.photos-test"
+  port: "5432"
 
-dataVolume:
-  name: "media"
-  existingClaimName: "photos-media"
+django:
+  allowed_hosts: "*"
+  redis_url: "redis://photos-redis-master.photos-test:6379/0"

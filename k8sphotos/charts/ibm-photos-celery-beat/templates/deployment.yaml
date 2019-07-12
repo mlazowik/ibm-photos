@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "ibm-photos-back.fullname" . }}
+  name: {{ include "ibm-photos-celery-beat.fullname" . }}
   labels:
-{{ include "ibm-photos-back.labels" . | indent 4 }}
+{{ include "ibm-photos-celery-beat.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "ibm-photos-back.name" . }}
+      app.kubernetes.io/name: {{ include "ibm-photos-celery-beat.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "ibm-photos-back.name" . }}
+        app.kubernetes.io/name: {{ include "ibm-photos-celery-beat.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
@@ -23,6 +23,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: [ {{ include "helm-toolkit.utils.joinListWithCommaQuoted" .Values.image.command }} ]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POSTGRES_USER
@@ -37,27 +38,8 @@ spec:
               value: {{ .Values.django.allowed_hosts | quote }}
             - name: REDIS_URL
               value: {{ .Values.django.redis_url | quote }}
-          ports:
-            - name: http
-              containerPort: 8000
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /api/photos
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /api/photos
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - name: "{{ include "ibm-photos-back.fullname" . }}-{{ .Values.dataVolume.name }}"
-              mountPath: /opt/back/media
-      volumes:
-        - name: "{{ include "ibm-photos-back.fullname" . }}-{{ .Values.dataVolume.name }}"
-          persistentVolumeClaim:
-            claimName: {{ .Values.dataVolume.existingClaimName }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

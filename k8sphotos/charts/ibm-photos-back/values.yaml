@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: de.icr.io/photos-test/ibm-photos-back
-  tag: latest
+  tag: v0.2
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
@@ -58,3 +58,8 @@ database:
 
 django:
   allowed_hosts: "*"
+  redis_url: "redis://photos-redis-master.photos-test:6379/0"
+
+dataVolume:
+  name: "media"
+  existingClaimName: "photos-media"

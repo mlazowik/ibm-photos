@@ -66,3 +66,14 @@ ibm-postgres-dev:
     name: "postgres"
   service:
     type: "ClusterIP"
+
+redis:
+  cluster:
+    enabled: false
+  usePassword: false
+  resources:
+    memory: 128Mi
+    cpu: 10m
+  master:
+    persistence:
+      enabled: false
