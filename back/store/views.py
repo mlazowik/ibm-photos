@@ -147,5 +147,5 @@ class PhotoListView(generics.ListAPIView):
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoUploadSerializer
-    authentication_classes = (authentication.TokenAuthentication)
+    authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
