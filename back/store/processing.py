@@ -35,6 +35,8 @@ def save_result(result, photo):
             )
 
         photo.processed = True
+        photo.width = photo.image.width
+        photo.height = photo.image.height
         photo.save()
 
 

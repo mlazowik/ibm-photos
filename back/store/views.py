@@ -13,8 +13,6 @@ class PhotoUploadSerializer(serializers.ModelSerializer):
 
 class PhotoSerializer(serializers.ModelSerializer):
     src = serializers.SerializerMethodField()
-    width = serializers.SerializerMethodField()
-    height = serializers.SerializerMethodField()
 
     class Meta:
         model = Photo
@@ -22,12 +20,6 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     def get_src(self, photo):
         return photo.image.url
-
-    def get_width(self, photo):
-        return photo.image.width
-
-    def get_height(self, photo):
-        return photo.image.height
 
 
 LABELS = {

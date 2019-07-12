@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: de.icr.io/photos-test/ibm-photos-back
-  tag: v0.5
+  tag: v0.6
   pullPolicy: IfNotPresent
 
 imagePullSecrets:

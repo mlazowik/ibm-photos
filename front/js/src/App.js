@@ -94,7 +94,7 @@ function App() {
           defaultValue=""
           labelText="Search"
           closeButtonLabelText=""
-          placeHolderText="Search (example: horse & ~person)"
+          placeHolderText="Search (example: person & ~horse)"
           id="search-1"
           value={query}
           onChange={onSerach}
