@@ -130,14 +130,14 @@ class PhotoListView(generics.ListAPIView):
     serializer_class = PhotoSerializer
 
     def get_queryset(self):
-        queryset = Photo.objects.order_by("-uploaded_at")
+        queryset = Photo.objects.order_by("-uploaded_at").filter(processed=True)
 
         query = self.request.query_params.get('query', None)
         if query is not None and query != "":
             ids = Photo.objects.values_list('pk', flat=True)
             try:
                 matching_ids = filter(lambda i: filter_id_by_query(i, query), ids)
-                queryset = queryset.filter(id__in=matching_ids, processed=True)
+                queryset = queryset.filter(id__in=matching_ids)
             except Exception as e:
                 raise ValidationError(e)
 
