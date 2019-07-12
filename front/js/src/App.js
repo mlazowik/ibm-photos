@@ -10,16 +10,12 @@ import "carbon-components/css/carbon-components.min.css";
 import {
   Content,
   Header,
-  HeaderGlobalAction,
-  HeaderGlobalBar,
+  HeaderNavigation,
+  HeaderMenuItem,
   HeaderName,
   Search
 } from "carbon-components-react";
-import Search20 from "@carbon/icons-react/es/search/20";
-import Notification20 from "@carbon/icons-react/es/notification/20";
-import AppSwitcher20 from "@carbon/icons-react/es/app-switcher/20";
 
-import { noop } from "./noop";
 import { config } from "./config";
 import { useDebounce } from "./debounce";
 
@@ -81,21 +77,14 @@ function App() {
     <>
       <Header aria-label="IBM Platform Name">
         <HeaderName href="#">Photos</HeaderName>
-        <HeaderGlobalBar>
-          <HeaderGlobalAction aria-label="Search" onClick={noop}>
-            <Search20 />
-          </HeaderGlobalAction>
-          <HeaderGlobalAction
-            aria-label="Notifications"
-            isActive
-            onClick={noop}
-          >
-            <Notification20 />
-          </HeaderGlobalAction>
-          <HeaderGlobalAction aria-label="App Switcher" onClick={noop}>
-            <AppSwitcher20 />
-          </HeaderGlobalAction>
-        </HeaderGlobalBar>
+        <HeaderNavigation>
+          <HeaderMenuItem href={`${config.API_ROOT}admin`}>
+            Admin
+          </HeaderMenuItem>
+          <HeaderMenuItem href={`${config.API_ROOT}api/photo`}>
+            Upload API
+          </HeaderMenuItem>
+        </HeaderNavigation>
       </Header>
       <Content>
         <Search
@@ -105,7 +94,7 @@ function App() {
           defaultValue=""
           labelText="Search"
           closeButtonLabelText=""
-          placeHolderText="Search"
+          placeHolderText="Search (example: horse & ~person)"
           id="search-1"
           value={query}
           onChange={onSerach}

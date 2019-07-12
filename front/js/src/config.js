@@ -1,5 +1,5 @@
 const dev = {
-  API_ROOT: "//127.0.0.1:8000/"
+  API_ROOT: "http://159.122.177.2:30170/"
 };
 
 const prod = {
