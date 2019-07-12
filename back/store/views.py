@@ -1,8 +1,5 @@
-from collections import defaultdict
-
-import pyparsing
 from booleano.utils import eval_boolean
-from rest_framework import viewsets, serializers, generics
+from rest_framework import serializers, generics
 from rest_framework.exceptions import ValidationError
 
 from store.models import Photo, Object

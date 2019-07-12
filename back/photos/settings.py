@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -23,9 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2!r9-s#k7ns(_dqwt$4cj!3k4bq(q7fvo2dgxdbid1*(538x%0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENV_DEBUG = os.environ.get('DJANGO_ALLOWED_HOSTS') or "False"
+DEBUG = ENV_DEBUG == "True"
 
-ALLOWED_HOSTS = []
+ENV_ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS') or "127.0.0.1"
+ALLOWED_HOSTS = ENV_ALLOWED_HOSTS.split(',')
 
 
 # Application definition
@@ -81,10 +84,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'django',
-        'HOST': 'localhost',
-        'PORT': '',
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT', 5432)
     }
 }
 
@@ -126,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR + '/static'
 
 MEDIA_ROOT = BASE_DIR + '/media'
 MEDIA_URL = '/media/'

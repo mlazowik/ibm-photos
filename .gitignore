@@ -313,5 +313,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # django stuff
-media/
+back/media/
 celerybeat-schedule.db
