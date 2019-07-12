@@ -32,6 +32,10 @@ A [public demo deployment](http://max-object-detector.max.us-south.containers.ap
 of [MAX Object Detector](https://developer.ibm.com/exchanges/models/all/max-object-detector/)
 is used.
 
+I did not use [IBM Cloud Visual Recognition](https://cloud.ibm.com/catalog/services/visual-recognition)
+as I needed to find multiple objects per photo, not classify
+photos.
+
 Deployment
 ----------
 1. Create k8s service in IBM Cloud, build, tag, and upload `back`
@@ -64,5 +68,5 @@ Possible improvements
   for boolean set operations. The bitmaps could be cached in RAM
   and invalidated on new image arrival/image removal.
 * Remove the random unused nginx container from deployment.
-* Deploy the ML model ourselves.
+* Deploy the ML model instead of using a public demo.
 * Use a better ML model. Some options listed in `res.txt`.
