@@ -1,8 +1,14 @@
 from booleano.utils import eval_boolean
-from rest_framework import serializers, generics
+from rest_framework import serializers, generics, viewsets, permissions, authentication
 from rest_framework.exceptions import ValidationError
 
 from store.models import Photo, Object
+
+
+class PhotoUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = ['image']
 
 
 class PhotoSerializer(serializers.ModelSerializer):
@@ -136,3 +142,10 @@ class PhotoListView(generics.ListAPIView):
                 raise ValidationError(e)
 
         return queryset
+
+
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoUploadSerializer
+    authentication_classes = (authentication.TokenAuthentication)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
