@@ -70,3 +70,9 @@ Possible improvements
 * Remove the random unused nginx container from deployment.
 * Deploy the ML model instead of using a public demo.
 * Use a better ML model. Some options listed in `res.txt`.
+* Don't have the admin password cleartext in the repo.
+* Travis for auto deployments.
+* Publish images to a public registry.
+* Create [ingress](https://cloud.ibm.com/docs/containers?topic=containers-ingress)
+  for SSL & domain support. Would do it now, but can't due
+  to lite.
