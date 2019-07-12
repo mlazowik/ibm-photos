@@ -43,11 +43,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /api/photos
+              path: /admin
               port: http
           readinessProbe:
             httpGet:
-              path: /api/photos
+              path: /admin
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
