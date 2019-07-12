@@ -1,16 +1,21 @@
+[ML]
 https://github.com/kanezaki/pytorch-unsupervised-segmentation
 http://ronghanghu.com/seg_every_thing/
 https://github.com/xvjiarui/GCNet
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md?fbclid=IwAR3Xdehat7sAmqpRgciPVDBq7HsLAIU0e_ZwF0ugHF6xSKcX-UunqPhmPFk
 
+[ML @ IBM]
 https://developer.ibm.com/exchanges/models/all/max-object-detector/
 https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-import-tensorflow.html
 
+[k8s etc.]
 https://github.com/phthom/ContainerOrchestration/blob/master/2-DockerLab.md
 
+[perf]
 https://github.com/ilanschnell/bitarray
 https://github.com/RoaringBitmap/CRoaring
 https://github.com/Ezibenroc/PyRoaringBitMap
 
+[ui]
 https://github.com/bvaughn/react-virtualized/issues/958
 https://github.com/neptunian/react-photo-gallery
