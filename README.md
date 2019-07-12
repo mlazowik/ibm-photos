@@ -13,6 +13,9 @@ Syntax: `&`, `|`, `~` (not), `(`, `)`, `<object>`.
 [Supported objects](https://gist.github.com/AruniRC/7b3dadd004da04c80198557db5da4bda)
 – sans those that have space inside the name (e.g. "baseball bat").
 
+Only processed photos are shown in the gallery, so they might 
+not appear immediately after uploading.
+
 Architecture
 ------------
 k8s pods:

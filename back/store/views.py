@@ -137,7 +137,7 @@ class PhotoListView(generics.ListAPIView):
             ids = Photo.objects.values_list('pk', flat=True)
             try:
                 matching_ids = filter(lambda i: filter_id_by_query(i, query), ids)
-                queryset = queryset.filter(id__in=matching_ids)
+                queryset = queryset.filter(id__in=matching_ids, processed=True)
             except Exception as e:
                 raise ValidationError(e)
 
