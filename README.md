@@ -80,3 +80,4 @@ Possible improvements
   to lite.
 * CDN for photos.
 * Display objects for each image in the gallery.
+* Use helm requirements' alias feature to reduce copy & paste.
