@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: de.icr.io/photos-test/ibm-photos-back
-  tag: v0.6
+  tag: v0.8
   command:
     - "celery"
     - "-A"

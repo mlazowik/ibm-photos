@@ -1,4 +1,7 @@
-from booleano.utils import eval_boolean
+from collections import defaultdict
+
+from bamboolean.factories import interpret
+from pyroaring import BitMap
 from rest_framework import serializers, generics, viewsets, permissions, authentication
 from rest_framework.exceptions import ValidationError
 
@@ -106,15 +109,12 @@ LABELS = {
     80: u'toothbrush'}
 
 
-def filter_id_by_query(i, query):
-    labels = Object.objects.filter(photo_id=i).values_list("label", flat=True)
-    vals = {}
-    for _, label in LABELS.items():
-        vals[label] = False
-    for label in labels:
-        vals[label] = True
+def get_matching_ids(query):
+    bitmaps = defaultdict(BitMap)
+    for (photo_id, label) in Object.objects.values_list("photo_id", "label"):
+        bitmaps[label].add(photo_id)
 
-    return eval_boolean(query, vals)
+    return interpret(query, bitmaps)
 
 
 class PhotoListView(generics.ListAPIView):
@@ -126,9 +126,8 @@ class PhotoListView(generics.ListAPIView):
 
         query = self.request.query_params.get('query', None)
         if query is not None and query != "":
-            ids = Photo.objects.values_list('pk', flat=True)
             try:
-                matching_ids = filter(lambda i: filter_id_by_query(i, query), ids)
+                matching_ids = get_matching_ids(query)
                 queryset = queryset.filter(id__in=matching_ids)
             except Exception as e:
                 raise ValidationError(e)

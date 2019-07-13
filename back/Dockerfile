@@ -4,7 +4,8 @@ LABEL maintainer="mlazowik@gmail.com"
 
 RUN apt-get update && \
     apt-get install -y \
-    build-essential
+    build-essential \
+    git
 
 ENV BACK_ROOT /opt/back
 RUN mkdir -p $BACK_ROOT

@@ -40,7 +40,12 @@ while left:
     data = r.json()
 
     for _, p in data["query"]["pages"].items():
-        image_info = p["imageinfo"][0]
+        image_info = {}
+        try:
+            image_info = p["imageinfo"][0]
+        except KeyError:
+            print(p)
+            continue
 
         if not image_info["mime"].startswith("image"):
             continue
@@ -53,14 +58,12 @@ while left:
         filename = uuid.uuid4().hex + extension
         p = S.get(src, stream=True, timeout=5)
         if p.status_code == 200:
-            with open("/Users/michal/scraped/" + filename, "wb") as f:
+            with open("/Users/michal/scraped2/" + filename, "wb") as f:
                 p.raw.decode_content = True
                 shutil.copyfileobj(p.raw, f)
 
-    left = False
-
-    # if "continue" in data:
-    #     PARAMS["continue"] = data["continue"]["continue"]
-    #     PARAMS["gcmcontinue"] = data["continue"]["gcmcontinue"]
-    # else:
-    #     left = False
+    if "continue" in data:
+        PARAMS["continue"] = data["continue"]["continue"]
+        PARAMS["gcmcontinue"] = data["continue"]["gcmcontinue"]
+    else:
+        left = False

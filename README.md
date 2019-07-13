@@ -39,6 +39,12 @@ I did not use [IBM Cloud Visual Recognition](https://cloud.ibm.com/catalog/servi
 as I needed to find multiple objects per photo, not classify
 photos.
 
+I guess the two most interesting tidbits are:
+* celery work handling (I assume that I can't trust queues, all
+  state is tracked in db). `back/photos/celery.py`
+* Binary [bitmaps](https://github.com/Ezibenroc/PyRoaringBitMap)
+  for query performance. `back/store/views.py`
+
 Deployment
 ----------
 1. Create k8s service in IBM Cloud, build, tag, and upload `back`
@@ -67,9 +73,6 @@ Possible improvements
   storage would have too big latency for a db.
 * Make the query language more lax, support spaces inside object
   class names.
-* Improve query performance by using [native bitmaps](https://github.com/Ezibenroc/PyRoaringBitMap)
-  for boolean set operations. The bitmaps could be cached in RAM
-  and invalidated on new image arrival/image removal.
 * Deploy the ML model instead of using a public demo.
 * Use a better ML model. Some options listed in `res.txt`.
 * Don't have the admin password cleartext in the repo.

@@ -6,6 +6,7 @@
 #
 amqp==2.5.0               # via kombu
 argparse==1.4.0           # via commonsdownloader
+git+git://github.com/mlazowik/bamboolean@5242cea860ee6db3ca505bfda5efd3d557448d4c#egg=bamboolean
 billiard==3.6.0.0         # via celery
 booleano==1.1a2
 celery[redis]==4.3.0
@@ -28,6 +29,7 @@ pillow==6.0.0
 pip-tools==3.8.0
 psycopg2-binary==2.8.2
 pyparsing==2.4.0          # via booleano
+pyroaring==0.2.7
 pytz==2019.1              # via celery, django
 redis==3.2.1              # via celery
 requests-oauthlib==1.2.0  # via mwclient
