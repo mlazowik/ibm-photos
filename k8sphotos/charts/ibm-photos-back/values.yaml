@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: de.icr.io/photos-test/ibm-photos-back
-  tag: v0.8
+  tag: v0.9
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
@@ -22,6 +22,7 @@ database:
 
 django:
   allowed_hosts: "*"
+  csrf_trusted_origins: "photos.lazowik.pl"
   redis_url: "redis://photos-redis-master.photos-test:6379/0"
 
 dataVolume:

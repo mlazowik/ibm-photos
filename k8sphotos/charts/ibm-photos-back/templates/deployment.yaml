@@ -35,6 +35,8 @@ spec:
               value: {{ .Values.database.port | quote }}
             - name: DJANGO_ALLOWED_HOSTS
               value: {{ .Values.django.allowed_hosts | quote }}
+            - name: DJANGO_CSRF_TRUSTED_ORIGINS
+              value: {{ .Values.django.csrf_trusted_origins | quote }}
             - name: REDIS_URL
               value: {{ .Values.django.redis_url | quote }}
           ports:
