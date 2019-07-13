@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 from bamboolean.factories import interpret
 from pyroaring import BitMap
 from rest_framework import serializers, generics, viewsets, permissions, authentication
@@ -109,8 +107,19 @@ LABELS = {
     80: u'toothbrush'}
 
 
+# Cannot `setattr` on a C module, have to subclass
+class NegBitMap(BitMap):
+    pass
+
+
 def get_matching_ids(query):
-    bitmaps = defaultdict(BitMap)
+    bitmap_all = BitMap(Photo.objects.values_list("id", flat=True))
+
+    # XXX: hacky
+    NegBitMap.__invert__ = lambda self: self ^ bitmap_all
+
+    bitmaps = {l: NegBitMap() for l in LABELS.values()}
+
     for (photo_id, label) in Object.objects.values_list("photo_id", "label"):
         bitmaps[label].add(photo_id)
 

@@ -9,5 +9,5 @@ djangorestframework
 celery[redis]<5
 grequests
 booleano
-git+git://github.com/mlazowik/bamboolean@5242cea860ee6db3ca505bfda5efd3d557448d4c#egg=bamboolean
+git+git://github.com/mlazowik/bamboolean@9e50cce7781410d20a8440273d93b41bee5568a3#egg=bamboolean
 pyroaring
