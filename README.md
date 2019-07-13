@@ -68,6 +68,7 @@ Uploading photos via API
 
 Possible improvements
 ---------------------
+* Don't store django's `SECRET_KEY` in plaintext in the repo.
 * Make the database persistent. I don't have access to block
   storage nor managed postgresql on the lite tier. Object
   storage would have too big latency for a db.
