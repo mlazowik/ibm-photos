@@ -6,9 +6,9 @@ This project is *not* owned by IBM.
 An online photo gallery that allows you to search photos by boolean
 expressions on existence of objects on them.
 
-Example query: `person & ~horse`.
+Example query: `person and not horse`.
 
-Syntax: `&`, `|`, `~` (not), `(`, `)`, `<object>`.
+Syntax: `and`, `or`, `not`, `(`, `)`, `<object name>`.
 
 [Supported objects](https://gist.github.com/AruniRC/7b3dadd004da04c80198557db5da4bda)
 – sans those that have space inside the name (e.g. "baseball bat").

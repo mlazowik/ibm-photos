@@ -94,7 +94,7 @@ function App() {
           defaultValue=""
           labelText="Search"
           closeButtonLabelText=""
-          placeHolderText="Search (example: person & ~horse)"
+          placeHolderText="Search (example: person and not horse)"
           id="search-1"
           value={query}
           onChange={onSerach}
@@ -108,7 +108,11 @@ function App() {
           loadMore={loadMorePhotos}
         >
           <div className={loading ? styles.loading : ""}>
-            <Gallery photos={photos.list} margin={3} />
+            {
+              allPhotos.length > 0 ?
+                  <Gallery photos={photos.list} margin={3} /> :
+                  <p>No results</p>
+            }
           </div>
         </InfiniteScroll>
       </Content>
