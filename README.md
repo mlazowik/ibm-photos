@@ -70,7 +70,6 @@ Possible improvements
 * Improve query performance by using [native bitmaps](https://github.com/Ezibenroc/PyRoaringBitMap)
   for boolean set operations. The bitmaps could be cached in RAM
   and invalidated on new image arrival/image removal.
-* Remove the random unused nginx container from deployment.
 * Deploy the ML model instead of using a public demo.
 * Use a better ML model. Some options listed in `res.txt`.
 * Don't have the admin password cleartext in the repo.
